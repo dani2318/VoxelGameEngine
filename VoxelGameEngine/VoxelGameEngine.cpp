@@ -2,10 +2,30 @@
 //
 
 #include <iostream>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	if (!glfwInit()) return -1;
+
+	GLFWwindow* window = glfwCreateWindow(1280, 720, "VoxelGameEngine", nullptr, nullptr);
+
+	if (!window) {
+		glfwTerminate();
+		return -1;
+	}
+
+	glfwMakeContextCurrent(window);
+	gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
+
+	while (!glfwWindowShouldClose(window)) {
+		glClear(GL_COLOR_BUFFER_BIT);
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
+	glfwTerminate();
+	return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
