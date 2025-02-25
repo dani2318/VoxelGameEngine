@@ -27,6 +27,16 @@ unsigned int ShaderProgram::CompileShader(const char* source, GLuint type) {
 void ShaderProgram::init() {
 	unsigned int vertexShader = CompileShader(vertexShaderSourceCstr, GL_VERTEX_SHADER);
 	unsigned int fragmentShader = CompileShader(fragmentShaderSourceCstr, GL_FRAGMENT_SHADER);
+
+	this->programID = glCreateProgram();
+
+	glAttachShader(this->programID, vertexShader);
+	glAttachShader(this->programID, fragmentShader);
+	glLinkProgram(this->programID);
+
+	glDeleteShader(vertexShader);
+	glDeleteShader(fragmentShader);
+
 }
 
 ShaderProgram::~ShaderProgram() {
