@@ -134,6 +134,7 @@
     <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="VAO.cpp" />
+    <ClCompile Include="VBO.cpp" />
     <ClCompile Include="VoxelGameEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +145,7 @@
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="VAO.h" />
+    <ClInclude Include="VBO.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

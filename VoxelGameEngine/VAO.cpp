@@ -5,8 +5,11 @@
 VAO::VAO() {
 	glGenVertexArrays(1, &m_VAO);
 	bind();
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	unbind();
+}
+
+void VAO::bufferatrib(unsigned int value) {
+	glVertexAttribPointer(0, value, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 }
 
 VAO::~VAO() {

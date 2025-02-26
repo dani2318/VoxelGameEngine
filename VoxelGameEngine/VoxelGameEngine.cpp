@@ -5,6 +5,7 @@
 #include "FileReader.h"
 #include "ShaderProgram.h"
 #include "VAO.h"
+#include "VBO.h"
 
 constexpr auto WINDOW_WIDTH = 1280;
 constexpr auto WINDOW_HEIGHT = 720;
@@ -45,20 +46,24 @@ int main()
 
 	glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);																	// Set the viewport to the window size.
 
-	unsigned int vao, VBO;
+	unsigned int vao, vbo;
 
 	VAO* _vao = new VAO();
+	VBO* _vbo = new VBO();
+
+	//glGenBuffers(1, &vbo);
+	//glGenVertexArrays(1, &vao);
 
 	_vao->bind();
-	glGenBuffers(1, &VBO);
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+	//glBindVertexArray(vao);
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
+	//glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	_vbo->glData(sizeof(vertices), vertices);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	_vao->bufferatrib(3);
+	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	//glEnableVertexAttribArray(0);
+	_vao->unbind();
 
 	ShaderProgram* shader = new ShaderProgram("./shaders/VertexShader.glsl", "./shaders/FragmentShader.glsl");		// Setup shaders
 	shader->init();																									//
@@ -71,7 +76,7 @@ int main()
 		processInput(window);
 
 		shader->use();
-		glBindVertexArray(vao);
+		_vao->bind();
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
 		glfwSwapBuffers(window);
