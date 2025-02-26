@@ -133,6 +133,7 @@
     <ClCompile Include="..\include\glad\glad.c" />
     <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="VAO.cpp" />
     <ClCompile Include="VoxelGameEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +143,7 @@
   <ItemGroup>
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="VAO.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

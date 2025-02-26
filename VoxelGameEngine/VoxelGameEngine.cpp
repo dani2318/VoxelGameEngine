@@ -4,6 +4,7 @@
 
 #include "FileReader.h"
 #include "ShaderProgram.h"
+#include "VAO.h"
 
 constexpr auto WINDOW_WIDTH = 1280;
 constexpr auto WINDOW_HEIGHT = 720;
@@ -44,10 +45,14 @@ int main()
 
 	glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);																	// Set the viewport to the window size.
 
-	unsigned int VAO, VBO;
+	unsigned int vao, VBO;
+
+	VAO* _vao = new VAO();
+
+	_vao->bind();
 	glGenBuffers(1, &VBO);
-	glGenVertexArrays(1, &VAO);
-	glBindVertexArray(VAO);
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
@@ -66,7 +71,7 @@ int main()
 		processInput(window);
 
 		shader->use();
-		glBindVertexArray(VAO);
+		glBindVertexArray(vao);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
 		glfwSwapBuffers(window);
